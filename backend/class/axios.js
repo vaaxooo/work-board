@@ -1,3 +1,5 @@
+'use strict'
+
 const { apiErrorLog, apiLogger } = require('./logger');
 
 const axios = require('axios').create({
