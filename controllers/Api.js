@@ -1,14 +1,15 @@
+'use strict'
+
 const {sendRequest} = require('../class/axios');
 
 /**
  * Returns a list with information about vacancies
  * @param request
  * @param response
- * @param next
- * @returns {Promise<void>}
+ * @returns {Promise<boolean>}
  */
-async function vacancySearch(request, response, next) {
-    const jobsList = await sendRequest('/vacancy/search', 'GET', {
+async function vacancySearch(request, response) {
+    const jobsList = await sendRequest('/vacancy/search', {
         count: 30,
         ukrainian: true
     });
@@ -16,18 +17,17 @@ async function vacancySearch(request, response, next) {
         status: true,
         data: jobsList || []
     });
-    next();
+    return false;
 }
 
 /**
  * Returns information about a specific job
  * @param request
  * @param response
- * @param next
- * @returns {Promise<void>}
+ * @returns {Promise<boolean>}
  */
-async function vacancy(request, response, next) {
-    const jobInfo = await sendRequest('/vacancy', 'GET', {
+async function vacancy(request, response) {
+    const jobInfo = await sendRequest('/vacancy', {
         id: +request.params.id,
         ukrainian: true
     });
@@ -35,7 +35,7 @@ async function vacancy(request, response, next) {
         status: true,
         data: jobInfo || []
     })
-    next();
+    return false;
 }
 
 module.exports = {

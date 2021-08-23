@@ -1,3 +1,5 @@
+const { apiErrorLog, apiLogger } = require('./logger');
+
 const axios = require('axios').create({
     baseURL: 'https://api.rabota.ua',
     headers: {
@@ -6,8 +8,32 @@ const axios = require('axios').create({
     }
 });
 
+/**
+ * Generate params to query string.
+ * @param data
+ * @returns {string}
+ */
+const encodeQueryData = function (data) {
+    const ret = [];
+    for (let d in data)
+        ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+    return ret.join('&');
+}
+
 module.exports = {
-    sendRequest: function (url = "", method = "GET", data = [], responseType = "json") {
+
+    /**
+     * Send request to server
+     * @param url
+     * @param method
+     * @param data
+     * @param responseType
+     * @returns {Promise<AxiosResponse<any>>}
+     */
+    sendRequest: function (url = "", data = {}, method = "GET", responseType = "json") {
+        if(method === "GET" && data) {
+            url = url + "?" + encodeQueryData(data);
+        }
         return axios({
             url,
             method,
@@ -17,20 +43,10 @@ module.exports = {
             if (!data) {
                 throw new Error(`Incorrect result (failed request)`);
             }
-            if (!data.success) {
-                console.error(data);
-                throw new Error(`Incorrect result (failed request)`);
-            }
             return data;
         }).catch(error => {
-            console.log(error)
-            if (error.response) {
-                console.error("Api request with params %j errored with result %j", data, error.response);
-            } else if (error.request) {
-                console.error("Api request with params %j failed sending", data);
-            } else {
-                console.error("Api request %j failed with message %j", data, error.message);
-            }
+            apiErrorLog(error)
         });
-    }
+    },
+
 };
