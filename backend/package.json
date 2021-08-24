@@ -1,7 +1,6 @@
 {
-  "name": "checkbots",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "dependencies": {
     "axios": "^0.21.1",

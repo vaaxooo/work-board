@@ -118,3 +118,33 @@ a.nav-link:hover {
     font-size: 18px;
     color: #000;
 }
+
+.vertical-banner {
+    background: #adb5bd6b;
+    padding: 20px;
+    height: 400px;
+    width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.banner-title {
+    margin: auto;
+    text-align: center;
+    font-size: 24px;
+    color: grey;
+    margin-top: 50%;
+}
+
+.banner-subtitle {
+    display: block;
+    font-size: 16px;
+}
+
+.vertical-banner:hover {
+    cursor: pointer;
+}
+
+.vacancy-count {
+    color: #6c757d;
+}
