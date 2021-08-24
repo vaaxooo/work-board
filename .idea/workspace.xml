@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="09b245a9-0efe-4f8c-82c2-9f41b653b936" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1x7Jy0hXGbCq2eyTYXlsprBExUA" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.17.1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\work-board\frontend\views\pages" />
+      <recent name="C:\OpenServer\domains\work-board\frontend\views" />
+      <recent name="C:\OpenServer\domains\work-board\frontend\views\components" />
+      <recent name="C:\OpenServer\domains\work-board\frontend\views\components\widgets\vacancy" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Node.js.frontend-app.js">
+    <configuration name="backend-app.js" type="NodeJSConfigurationType" path-to-js-file="app.js" working-dir="$PROJECT_DIR$/backend">
+      <envs>
+        <env name="PORT" value="3000" />
+      </envs>
+      <method v="2" />
+    </configuration>
+    <configuration name="frontend-app.js" type="NodeJSConfigurationType" path-to-js-file="frontend/app.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.backend-app.js" />
+      <item itemvalue="Node.js.frontend-app.js" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="09b245a9-0efe-4f8c-82c2-9f41b653b936" name="Default Changelist" comment="" />
+      <created>1629700443656</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1629700443656</updated>
+      <workItem from="1629700445281" duration="3550000" />
+      <workItem from="1629720928533" duration="1593000" />
+      <workItem from="1629722642693" duration="7771000" />
+      <workItem from="1629785232865" duration="3391000" />
+      <workItem from="1629801431657" duration="450000" />
+      <workItem from="1629802307059" duration="2563000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2589" y="178" key="#app.js" timestamp="1629724877164">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2589" y="178" key="#app.js/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629724877164" />
+    <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1629801744898">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629801744898" />
+    <state x="2747" y="269" key="EnvironmentVariablesDialog" timestamp="1629700820519">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2747" y="269" key="EnvironmentVariablesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629700820519" />
+    <state x="2660" y="274" key="FileChooserDialogImpl" timestamp="1629801885723">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2660" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629801885723" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1629804763505">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629804763505" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1629804763505">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629804763505" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1629804763505">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629804763505" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1629804763505">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629804763505" />
+    <state x="2597" y="327" key="jetbrains.nodejs.interpreters-dialog" timestamp="1629801712914">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2597" y="327" key="jetbrains.nodejs.interpreters-dialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629801712914" />
+  </component>
+</project>
