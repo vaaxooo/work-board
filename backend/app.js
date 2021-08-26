@@ -9,8 +9,9 @@ express.use(cors({
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }))
 express.use(routes);
+express.set('view cache', true);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3002;
 express.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
 })
