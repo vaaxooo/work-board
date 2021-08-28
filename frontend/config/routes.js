@@ -9,6 +9,7 @@ const {
 * INTERFACES ROUTES
 * */
 express.get("/", appIndex);
+express.get("/vacancies/search/:page", appIndex);
 
 
 /*

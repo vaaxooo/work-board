@@ -1,4 +1,11 @@
+const moment = require('moment');
+require('moment/locale/ru');
+
 module.exports.VacancyHorizontalBlock = function (vacancy) {
+
+    moment.locale('ru');
+    vacancy.dateTxt = moment(vacancy.date).fromNow();
+
     return `<div class="vacancy-block">
                 <div class="vacancy-title">  
                     ${vacancy.name} 
@@ -8,27 +15,27 @@ module.exports.VacancyHorizontalBlock = function (vacancy) {
                     <div class="col-md-5">
                         <span class="vacancy-company">
                             <span class="material-icons icon">location_city</span>
-                            Компания: <b>${vacancy?.companyName || "не указана"}</b>
+                            <b>${vacancy?.companyName || "не указана"}</b>
                         </span>
                     </div>
                     <div class="col-md-7">
                         <span class="vacancy-city">
-                            <span class="material-icons icon">fmd_good</span>
-                            Город: <b>${vacancy?.cityName || "не указан"}</b>
+                            <span class="material-icons icon">access_time_filled</span>
+                            <b>${vacancy.dateTxt}</b>
                         </span>
                     </div>
                 </div>
                 <div class="vacancy-subtitle row">
                     <div class="col-md-5">
                         <span class="vacancy-date-publication">
-                            <span class="material-icons icon">access_time_filled</span>
-                            Опубликовано: <b>${vacancy.dateTxt}</b>
+                            <span class="material-icons icon">fmd_good</span>
+                            <b>${vacancy?.cityName || "не указан"}</b>
                         </span>
                     </div>
                     <div class="col-md-7">
                         <span class="vacancy-salary">
                             <span class="material-icons icon">attach_money</span>
-                            Зарплата: ${generateSalary(vacancy.salaryFrom, vacancy.salaryTo, vacancy.salary, vacancy.salaryComment)}
+                            ${generateSalary(vacancy.salaryFrom, vacancy.salaryTo, vacancy.salary, vacancy.salaryComment)}
                         </span>
                     </div>
                 </div>
@@ -38,7 +45,7 @@ module.exports.VacancyHorizontalBlock = function (vacancy) {
                         ${generateBadges(vacancy.badges)}
                     </div>
                     
-                    ${generateBanner(vacancy.designBannerUrl)}
+                    ${generateBanner(vacancy.designBannerPreview)}
                     
                 </div>
             </div>`;
@@ -68,21 +75,19 @@ const generateBadges = function (badges = []) {
 const generateSalary = function (salaryFrom, salaryTo, salary, salaryComment) {
     let salaryContent = ``;
     if(salaryFrom && salaryTo) {
-        salaryContent = `<b>${salaryFrom}</b>-<b>${salaryTo}</b> грн.`;
+        salaryContent = `<b>${salaryFrom}-${salaryTo} грн.</b>`;
     } else if(salaryFrom && !salaryTo) {
-        salaryContent = `от <b>${salaryFrom}</b> грн.`;
+        salaryContent = `от <b>${salaryFrom} грн.</b>`;
     } else if(!salaryFrom && salaryTo) {
-        salaryContent = `до <b>${salaryTo}</b> грн.`;
-    } else if(!salaryFrom && salaryTo) {
-        salaryContent = `до <b>${salaryTo}</b> грн.`;
+        salaryContent = `до <b>${salaryTo} грн.</b>`;
     } else if(!salaryFrom && !salaryTo && salary > 0) {
-        salaryContent = `<b>${salary}</b> грн.`;
+        salaryContent = `<b>${salary} грн.</b>`;
     } else if(!salaryFrom && !salaryTo && !salary) {
         salaryContent = `<b>по договорености</b>`;
     }
 
     if(salaryComment) {
-        salaryContent = salaryContent + " (" + salaryComment + ")";
+        salaryContent = salaryContent + " <b>(" + salaryComment + ")</b>";
     }
 
     return salaryContent;

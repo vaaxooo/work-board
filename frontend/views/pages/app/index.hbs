@@ -1,25 +1,16 @@
 {{{ search }}}
 
-<div class="content">
-    <div class="row">
-        <div class="col-md-8">
-            {{{ content }}}
-        </div>
-        <div class="col-md-4">
+<div class="row content">
+    <div class="col-md-8 vacancies-list">
+        {{{ content }}}
 
-            <div class="block-filter">
-                <div class="form-group">
-                    <label for="rubrics_list" class="filter-title">Рубрики</label>
-                    <select class="form-control form-control-lg input-rubrics" id="rubrics_list">
-                        <option value="" selected>Выберите рубрику</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="salaryFrom" class="filter-title">Хочу зарплату</label>
-                    <input type="number" placeholder="от" name="salaryFrom" class="form-control form-control-lg input-salary" />
-                </div>
-            </div>
-
+        <div class="row mt-3">
+            {{{ pagination }}}
         </div>
+
     </div>
+    <div class="col-md-4">
+       {{{ filter }}}
+    </div>
+
 </div>
