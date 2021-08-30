@@ -16,14 +16,17 @@ module.exports = {
     index: async function (request, response) {
         const page = request.params?.page;
         const searchQueryString = request.query?.searchQueryString;
+        const searchCity = request.query?.searchCity;
 
         const {statistic, data, cities} = await sendRequest("/vacancy/search", {
             page: page ? +page : 1,
-            searchQueryString: searchQueryString ? searchQueryString : null
+            searchQueryString: searchQueryString ? searchQueryString : false,
+            searchCity: searchCity ? searchCity : false
         });
 
         let content = ``
-        for(const {_source: vacancy} of data) {
+        for(const key in data) {
+            const {_source: vacancy} = data[key];
             content = content + VacancyHorizontalBlock(vacancy);
         }
 
@@ -36,10 +39,15 @@ module.exports = {
         });
     },
 
+    /**
+     * Vacancy page info
+     * @param request
+     * @param response
+     * @returns {Promise<void>}
+     */
     vacancy: async function (request, response) {
-        let {data} = await sendRequest("/vacancy/" + request.params.vacancyID);
 
-        const {_source: vacancy} = data[0];
+        let {data: vacancy} = await sendRequest("/vacancy/" + request.params.vacancyID);
 
         moment.locale('ru');
         vacancy.dateTxt = moment(vacancy.date).fromNow();
