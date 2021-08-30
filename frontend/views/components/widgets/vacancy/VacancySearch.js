@@ -10,7 +10,7 @@ module.exports.VacancySearch = function (params, cities) {
                             <input type="text" class="form-control form-control-lg input-search" placeholder="Кем хотите работать?" name="searchQueryString" id="searchQueryString" required/>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-select form-select-lg input-search-city custom-select">
+                            <select class="form-select form-select-lg input-search-city custom-select" id="searchCity">
                                 ${generationCitiesList(cities)}
                             </select>
                         </div>
@@ -43,9 +43,13 @@ function generationSubtitle(params) {
  * @returns {string}
  */
 function generationCitiesList(cities) {
-    content = `<option value="0" selected>Выберите город</option>`;
+    content = `<option value="" selected>Выберите город</option>`;
     for(const {_source: city} of cities) {
-        content += `<option value="${city.id}">${city.ru} <small>(${city.regionName.ru})</small></option>`;
+        content += `<option value="${city.ru}" onclick="searchCity()">${city.ru} `;
+        if(city.regionName.ru){
+            content += `<small>(${city.regionName.ru})</small>`;
+        }
+        content += `</option>`;
     }
     return content;
 }

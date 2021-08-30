@@ -12,25 +12,42 @@ const {sendRequest} = require('../class/axios');
 async function vacancySearch(request, response) {
     const {
         searchQueryString,
+        searchCity,
         page
     } = request.query;
 
     const cities = await elasticSearch.search({
-       index: 'cities',
+        index: 'cities',
+        body: {
+            size: 877
+        }
     });
 
     const offset = (30 * +page) - 30;
     const limit = 30;
-    if(searchQueryString !== 'null'){
+
         const jobsList = await elasticSearch.search({
             index: 'vacancies',
             body: {
                 from: offset,
                 size: limit,
-                query: {
-                    multi_match: {
-                        query: searchQueryString,
-                        fields: ["name", "companyName", "description"]
+                query:  {
+                    dis_max: {
+                        queries: [
+                            {
+                                multi_match: {
+                                    query: searchQueryString,
+                                    fields: ["name", "companyName", "description"],
+                                }
+                            },
+
+                            {
+                                match: {
+                                    cityName: searchCity
+                                }
+                            },
+                        ],
+
                     }
                 },
                 sort: [
@@ -49,28 +66,7 @@ async function vacancySearch(request, response) {
             cities: cities.hits.hits || []
         })
         return false;
-    }
 
-    const jobsList = await elasticSearch.search({
-        index: 'vacancies',
-        body: {
-            from: offset,
-            size: limit,
-            sort: [
-                {date: "desc"}
-            ]
-        }
-    });
-    response.send({
-        status: true,
-        statistic: {
-            type: 'list',
-            total: jobsList.hits.total.value
-        },
-        data: jobsList.hits.hits || [],
-        cities: cities.hits.hits || []
-    })
-    return false;
 }
 
 /**

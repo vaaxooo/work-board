@@ -13,14 +13,17 @@ module.exports = {
     index: async function (request, response) {
         const page = request.params?.page;
         const searchQueryString = request.query?.searchQueryString;
+        const searchCity = request.query?.searchCity;
 
         const {statistic, data, cities} = await sendRequest("/vacancy/search", {
             page: page ? +page : 1,
-            searchQueryString: searchQueryString ? searchQueryString : null
+            searchQueryString: searchQueryString ? searchQueryString : false,
+            searchCity: searchCity ? searchCity : false
         });
 
         let content = ``
-        for(const {_source: vacancy} of data) {
+        for(const key in data) {
+            const {_source: vacancy} = data[key];
             content = content + VacancyHorizontalBlock(vacancy);
         }
 
