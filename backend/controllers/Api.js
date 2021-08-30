@@ -16,12 +16,12 @@ async function vacancySearch(request, response) {
     } = request.query;
 
     const cities = await elasticSearch.search({
-       index: 'cities',
+        index: 'cities',
     });
 
     const offset = (30 * +page) - 30;
     const limit = 30;
-    if(searchQueryString !== 'null'){
+    if (searchQueryString !== 'null') {
         const jobsList = await elasticSearch.search({
             index: 'vacancies',
             body: {
@@ -80,13 +80,21 @@ async function vacancySearch(request, response) {
  * @returns {Promise<boolean>}
  */
 async function vacancy(request, response) {
-    const jobInfo = await sendRequest('/vacancy', {
-        id: +request.params.id,
-        ukrainian: false
+
+    const jobInfo = await elasticSearch.search({
+        index: 'vacancies',
+        body: {
+            query: {
+                match: {
+                    id: +request.params.id
+                }
+            }
+        }
     });
+
     response.send({
         status: true,
-        data: jobInfo || []
+        data: jobInfo.hits.hits || []
     })
     return false;
 }

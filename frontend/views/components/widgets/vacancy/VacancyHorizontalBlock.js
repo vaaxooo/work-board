@@ -6,7 +6,7 @@ module.exports.VacancyHorizontalBlock = function (vacancy) {
     moment.locale('ru');
     vacancy.dateTxt = moment(vacancy.date).fromNow();
 
-    return `<div class="vacancy-block">
+    return `<div class="vacancy-block" onclick="redirect('/vacancy/${vacancy.id}')">
                 <div class="vacancy-title">  
                     ${vacancy.name} 
                     ${generateHotBadge(vacancy.hot)}  

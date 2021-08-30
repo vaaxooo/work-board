@@ -1,6 +1,7 @@
 const express = require('express').Router();
 const {
-    index: appIndex
+    index: appIndex,
+    vacancy: appVacancy
 } = require('../controllers/interfaces/AppController');
 
 
@@ -10,6 +11,7 @@ const {
 * */
 express.get("/", appIndex);
 express.get("/vacancies/search/:page", appIndex);
+express.get("/vacancy/:vacancyID", appVacancy);
 
 
 /*

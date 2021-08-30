@@ -1,0 +1,79 @@
+<div class="row mt-5">
+
+    <div class="col-md-8 content">
+        <div class="vacancyinfo-block">
+            <div class="vacancyinfo-banner">
+                <img src="{{ vacancy.designBannerFullUrl }}" class="banner-preview" />
+            </div>
+
+            <div class="date-publication">
+                Опубликовано {{ vacancy.dateTxt }} - {{vacancy.date}}
+            </div>
+
+            <div class="vacancy-title mt-3">
+                {{ vacancy.name }}
+            </div>
+
+            <div class="vacancyinfo-subtitle">
+                <div class="row">
+                    <div class="col-md-4">
+                        Город: <b>{{ vacancy.cityName }}</b>
+                    </div>
+                    <div class="col-md-8">
+                        Зарплата: {{{ vacancy.salary }}}
+                    </div>
+                </div>
+            </div>
+
+            {{#if vacancy.badges }}
+                <div class="vacancyinfo-badges">
+                    <strong class="d-block">Приемущества вакансии</strong>
+                    {{#each vacancy.badges}}
+                        <span class="vacancyinfo-badges-tag" data-id="{{ this.id }}">{{ this.name }}</span>
+                    {{/each}}
+                </div>
+            {{/if}}
+
+            <div class="vacancyinfo-description">
+                {{{ vacancy.description }}}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        {{#if vacancy.contactPhone }}
+            <div class="vacancyinfo-company-block">
+                <div class="company-image">
+                    <img src="https://vacancy-contact-photos-original.rabota.ua/{{vacancy.logo}}" class="company-image-preview rounded-circle" />
+                </div>
+                <div class="company-information">
+                    <strong>
+                        Контактное лицо
+                    </strong>
+                    {{#if vacancy.contactPerson }}
+                        <span class="company-name">
+                            <span class="material-icons icon">account_circle</span>
+                            {{ vacancy.contactPerson }}
+                        </span>
+                    {{/if}}
+                    {{#if vacancy.contactPhone }}
+                        <span class="company-phone">
+                            <span class="material-icons icon">settings_cell</span>
+                            {{ vacancy.contactPhone }}
+                        </span>
+                    {{/if}}
+                    {{#if vacancy.contactURL }}
+                        <div class="company-website">
+                            <span class="material-icons icon">link</span>
+                            <a href="{{ vacancy.contactURL }}">
+                                {{ vacancy.contactURL }}
+                            </a>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+    </div>
+
+</div>

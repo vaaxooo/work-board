@@ -18,6 +18,19 @@ app.engine(
     })
 )
 
+Handlebars.registerHelper('ifeq', function(a, b, options) {
+    if (a === b) return options.fn(this)
+    else return options.inverse(this)
+});
+
+Handlebars.registerHelper('eachInMap', function ( map, block ) {
+    var out = '';
+    Object.keys( map ).map(function( prop ) {
+        out += block.fn( {key: prop, value: map[ prop ]} );
+    });
+    return out;
+} );
+
 hbs.registerPartials("/partials");
 app.set('views', './views/pages')
 app.set('view engine', 'hbs')
