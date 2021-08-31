@@ -3,6 +3,9 @@
 const {elasticSearch} = require('../class/elasticsearch');
 const {sendRequest} = require('../class/axios');
 
+
+const {VacancySearchFilter} = require("./widgets/VacancySearchFilter");
+
 /**
  * Returns a list with information about vacancies
  * @param request
@@ -23,29 +26,36 @@ async function vacancySearch(request, response) {
         }
     });
 
+    const rubrics = await elasticSearch.search({
+        index: 'rubrics',
+        body: {
+            size: 34
+        }
+    });
+
     const offset = (30 * +page) - 30;
     const limit = 30;
+
+    const fieldsMap = {
+        searchQueryString: ["`name`", "`companyName`", "`description`"],
+        searchCity: ["`cityName`"]
+    }
+
+    const filter = VacancySearchFilter(request.query);
 
     const jobsList = await elasticSearch.search({
         index: 'vacancies',
         body: {
             from: offset,
             size: limit,
-                dis_max: {
-                    queries: [
-                        {
-                            multi_match: {
-                                query: searchQueryString,
-                                fields: ["name", "companyName", "description"],
-                            }
-                        },
+            query: {
+                bool: {
+                    should: {
+                        match_all: {}
+                    },
 
-                        {
-                            match: {
-                                cityName: searchCity
-                            }
-                        },
-                    ]
+                    filter: filter
+
                 }
             },
             sort: [
@@ -53,15 +63,17 @@ async function vacancySearch(request, response) {
             ]
         }
     });
+
     response.send({
         status: true,
         statistic: {
-            type: 'search',
+            type: searchQueryString !== 'false' ? 'search' : 'list',
             total: jobsList.hits.total.value,
             query: searchQueryString
         },
         data: jobsList.hits.hits || [],
-        cities: cities.hits.hits || []
+        cities: cities.hits.hits || [],
+        rubrics: rubrics.hits.hits || []
     })
     return false;
 
@@ -74,13 +86,20 @@ async function vacancySearch(request, response) {
  * @returns {Promise<boolean>}
  */
 async function vacancy(request, response) {
-    const jobInfo = await sendRequest('/vacancy', {
-        id: +request.params.id,
-        ukrainian: false
+    const jobInfo = await elasticSearch.search({
+        index: 'vacancies',
+        body: {
+            query: {
+                term: {
+                    id: request.params.id
+                }
+            }
+        }
     });
+
     response.send({
         status: true,
-        data: jobInfo || []
+        data: jobInfo.hits.hits || []
     })
     return false;
 }

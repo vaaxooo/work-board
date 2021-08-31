@@ -1,9 +1,9 @@
-module.exports.VacancyFilter = function () {
+module.exports.VacancyFilter = function (rubrics) {
     return ` <div class="block-filter content">
                 <div class="form-group filter-type">
                     <label for="rubrics_list" class="filter-title">Рубрики</label>
                     <select class="form-select form-select-lg input-rubrics" id="rubrics_list">
-                        <option value="" selected>Выберите рубрику</option>
+                        ${generationRubricsList(rubrics)}
                     </select>
                 </div>
     
@@ -61,4 +61,17 @@ module.exports.VacancyFilter = function () {
     
                 </div>
             </div>`;
+}
+
+/**
+ * Generation rubrics list
+ * @param rubrics
+ * @returns {string}
+ */
+function generationRubricsList(rubrics) {
+    content = `<option value="" selected>Выберите рубрику</option>`;
+    for(const {_source: rubric} of rubrics) {
+        content += `<option value="${rubric.id}" onclick="searchRubric()">${rubric.ru}</option>`;
+    }
+    return content;
 }

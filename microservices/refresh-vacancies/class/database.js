@@ -1,8 +1,8 @@
 const {Sequelize} = require('sequelize');
 
-const sequelize = new Sequelize('workboard', 'mysql', 'mysql', {
+const sequelize = new Sequelize('workboard', 'postgres', 'postgres', {
     host: 'localhost',
-    dialect: 'mysql',
+    dialect: 'postgres',
     logging: false,
     define: {
         charset: 'utf8',

@@ -36,7 +36,11 @@ function searchVacancies() {
     if (getUrlParams().hasOwnProperty('searchQueryString')) {
         delete queryParams.searchQueryString;
     }
-    queryParams = Object.assign({}, {searchQueryString}, queryParams);
+
+    if(searchQueryString){
+        queryParams = Object.assign({}, {searchQueryString}, queryParams);
+    }
+
     window.location.href = '/vacancies/search/1' + "?" + encodeQueryData(queryParams);
 }
 
@@ -68,7 +72,10 @@ if (searchCitySelect) {
         if (getUrlParams().hasOwnProperty('searchCity')) {
             delete queryParams.searchCity;
         }
-        queryParams = Object.assign({}, queryParams,{searchCity: searchCitySelect.value});
+
+        if(searchCitySelect.value){
+            queryParams = Object.assign({}, queryParams,{searchCity: searchCitySelect.value});
+        }
         window.location.href = '/vacancies/search/1' + "?" + encodeQueryData(queryParams);
     });
 }

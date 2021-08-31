@@ -18,7 +18,7 @@ module.exports = {
         const searchQueryString = request.query?.searchQueryString;
         const searchCity = request.query?.searchCity;
 
-        const {statistic, data, cities} = await sendRequest("/vacancy/search", {
+        const {statistic, data, cities, rubrics} = await sendRequest("/vacancy/search", {
             page: page ? +page : 1,
             searchQueryString: searchQueryString ? searchQueryString : false,
             searchCity: searchCity ? searchCity : false
@@ -33,7 +33,7 @@ module.exports = {
         response.render('app/index', {
             title: "Поиск вакансий",
             search: VacancySearch(statistic, cities),
-            filter: VacancyFilter(),
+            filter: VacancyFilter(rubrics),
             pagination: VacancyPagination(statistic.total, page ? page : 1),
             content
         });
@@ -47,7 +47,8 @@ module.exports = {
      */
     vacancy: async function (request, response) {
 
-        let {data: vacancy} = await sendRequest("/vacancy/" + request.params.vacancyID);
+        let {data} = await sendRequest("/vacancy/" + request.params.vacancyID);
+        const {_source: vacancy} = data[0];
 
         moment.locale('ru');
         vacancy.dateTxt = moment(vacancy.date).fromNow();
