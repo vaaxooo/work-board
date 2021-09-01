@@ -5,22 +5,41 @@ module.exports = {
 
         const {
             searchQueryString,
-            searchCity
+            searchCity,
+            rubric,
+            scheduleId
         } = params;
 
-        if(searchQueryString && searchQueryString !== "false") {
+
+        if (rubric && rubric !== "false") {
             filter.push({
-                multi_match: {
-                    query: searchQueryString,
-                    fields: ["name", "companyName", "description"],
+                match: {
+                    branchName: rubric
+                }
+            });
+        } else {
+            if (searchQueryString && searchQueryString !== "false") {
+                filter.push({
+                    multi_match: {
+                        query: searchQueryString,
+                        fields: ["name", "companyName", "description"],
+                    }
+                });
+            }
+        }
+
+        if (searchCity && searchCity !== "false") {
+            filter.push({
+                match: {
+                    cityName: searchCity
                 }
             });
         }
 
-        if(searchCity && searchCity !== "false"){
+        if(scheduleId && scheduleId !== "false") {
             filter.push({
                 match: {
-                    cityName: searchCity
+                    scheduleId: scheduleId
                 }
             });
         }

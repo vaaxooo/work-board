@@ -104,7 +104,7 @@ Vacancies.init({
     branchId: DataTypes.INTEGER,
     branchName: DataTypes.STRING,
     vacancyAddress: DataTypes.STRING,
-    sheduleId: {
+    scheduleId: {
         type: DataTypes.INTEGER,
         allowNull: true
     },

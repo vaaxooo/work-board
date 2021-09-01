@@ -2,38 +2,38 @@ module.exports.VacancyFilter = function (rubrics) {
     return ` <div class="block-filter content">
                 <div class="form-group filter-type">
                     <label for="rubrics_list" class="filter-title">Рубрики</label>
-                    <select class="form-select form-select-lg input-rubrics" id="rubrics_list">
+                    <select class="form-select form-select-lg input-rubrics" id="rubrics_list" onchange="searchVacanciesByRubric()">
                         ${generationRubricsList(rubrics)}
                     </select>
                 </div>
     
-                <div class="form-group filter-type">
+                <form name="shedules_list" class="form-group filter-type">
                     <label  class="filter-title">Вид занятости:</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sheduleId" id="shedule1">
-                        <label class="form-check-label" for="shedule1">
+                        <input class="form-check-input" type="radio" name="scheduleId" id="1" data-shedule="Полная занятость">
+                        <label class="form-check-label" for="1">
                             Полная занятость
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sheduleId" id="shedule2" checked>
-                        <label class="form-check-label" for="shedule2">
+                        <input class="form-check-input" type="radio" name="scheduleId" id="2" data-shedule="Стажировка / практика">
+                        <label class="form-check-label" for="2">
                             Стажировка / практика
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sheduleId" id="shedule3" checked>
-                        <label class="form-check-label" for="shedule3">
+                        <input class="form-check-input" type="radio" name="scheduleId" id="3" data-shedule="Неполная занятость">
+                        <label class="form-check-label" for="3">
                             Неполная занятость
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sheduleId" id="shedule4" checked>
-                        <label class="form-check-label" for="shedule4">
+                        <input class="form-check-input" type="radio" name="scheduleId" id="4" data-shedule="Удаленная работа">
+                        <label class="form-check-label" for="4">
                             Удаленная работа
                         </label>
                     </div>
-                </div>
+                </form>
     
                 <div class="form-group">
                     <label for="salaryFrom" class="filter-title">Хочу зарплату</label>
@@ -71,7 +71,7 @@ module.exports.VacancyFilter = function (rubrics) {
 function generationRubricsList(rubrics) {
     content = `<option value="" selected>Выберите рубрику</option>`;
     for(const {_source: rubric} of rubrics) {
-        content += `<option value="${rubric.id}" onclick="searchRubric()">${rubric.ru}</option>`;
+        content += `<option value="${rubric.ru}" onclick="searchRubric()">${rubric.ru}</option>`;
     }
     return content;
 }

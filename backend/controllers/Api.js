@@ -15,31 +15,33 @@ const {VacancySearchFilter} = require("./widgets/VacancySearchFilter");
 async function vacancySearch(request, response) {
     const {
         searchQueryString,
-        searchCity,
         page
     } = request.query;
+
+
 
     const cities = await elasticSearch.search({
         index: 'cities',
         body: {
-            size: 877
+            size: 10000,
+            query: {
+                match_all: {}
+            }
         }
     });
 
     const rubrics = await elasticSearch.search({
         index: 'rubrics',
         body: {
-            size: 34
+            size: 10000,
+            query: {
+                match_all: {}
+            }
         }
     });
 
     const offset = (30 * +page) - 30;
     const limit = 30;
-
-    const fieldsMap = {
-        searchQueryString: ["`name`", "`companyName`", "`description`"],
-        searchCity: ["`cityName`"]
-    }
 
     const filter = VacancySearchFilter(request.query);
 
