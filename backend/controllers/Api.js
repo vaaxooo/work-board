@@ -3,8 +3,13 @@
 const {elasticSearch} = require('../class/elasticsearch');
 const {sendRequest} = require('../class/axios');
 
-
 const {VacancySearchFilter} = require("./widgets/VacancySearchFilter");
+const {VacancyRecommended} = require("./widgets/VacancyRecommended");
+
+const {
+    getAllCities,
+    getAllRubrics
+} = require('./Methods');
 
 /**
  * Returns a list with information about vacancies
@@ -17,28 +22,6 @@ async function vacancySearch(request, response) {
         searchQueryString,
         page
     } = request.query;
-
-
-
-    const cities = await elasticSearch.search({
-        index: 'cities',
-        body: {
-            size: 10000,
-            query: {
-                match_all: {}
-            }
-        }
-    });
-
-    const rubrics = await elasticSearch.search({
-        index: 'rubrics',
-        body: {
-            size: 10000,
-            query: {
-                match_all: {}
-            }
-        }
-    });
 
     const offset = (30 * +page) - 30;
     const limit = 30;
@@ -66,6 +49,9 @@ async function vacancySearch(request, response) {
         }
     });
 
+    const cities = await getAllCities();
+    const rubrics = await getAllRubrics();
+
     response.send({
         status: true,
         statistic: {
@@ -88,6 +74,7 @@ async function vacancySearch(request, response) {
  * @returns {Promise<boolean>}
  */
 async function vacancy(request, response) {
+
     const jobInfo = await elasticSearch.search({
         index: 'vacancies',
         body: {
@@ -99,14 +86,73 @@ async function vacancy(request, response) {
         }
     });
 
+    const {_source: JobData} = jobInfo.hits.hits[0];
+
+    const filter = VacancyRecommended(JobData);
+
+    const recommendedVacancies = await elasticSearch.search({
+        index: 'vacancies',
+        body: {
+            size: 5,
+            query: {
+                bool: {
+                    should: {
+                        match_all: {}
+                    },
+
+                    filter: filter
+
+                }
+            },
+            sort: [
+                {date: "desc"},
+            ]
+        }
+    });
+
     response.send({
         status: true,
-        data: jobInfo.hits.hits || []
+        data: jobInfo.hits.hits || [],
+        recommendedVacancies: recommendedVacancies.hits.hits || []
     })
     return false;
 }
 
+
+/**
+ * Get cities list
+ * @param request
+ * @param response
+ * @returns {Promise<boolean>}
+ */
+async function getCitiesList(request, response) {
+    const cities = await getAllCities();
+    response.send({
+        status: true,
+        data: cities.hits.hits || []
+    });
+    return false;
+}
+
+/**
+ * Get rubrics list
+ * @param request
+ * @param response
+ * @returns {Promise<boolean>}
+ */
+async function getRubricsList(request, response) {
+    const rubrics = await getAllRubrics();
+    response.send({
+        status: true,
+        data: rubrics.hits.hits || []
+    });
+    return false;
+}
+
+
 module.exports = {
     vacancySearch,
-    vacancy
+    vacancy,
+    getCitiesList,
+    getRubricsList
 }

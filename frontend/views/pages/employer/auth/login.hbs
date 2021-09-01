@@ -1,0 +1,57 @@
+<div class="row">
+   <div class="col-md-5">
+      <form class="form-auth">
+         <div class="auth-title">
+            {{ title }}
+         </div>
+         <div class="form-content">
+            <div class="form-group">
+               <label for="email">E-mail</label>
+               <input type="email"
+                  class="form-control form-control-lg"
+                  placeholder="Введите ваш E-mail"
+                  name="email"
+                  id="email"
+                  required="" />
+            </div>
+            <div class="form-group">
+               <label for="password">Пароль</label>
+               <input type="password"
+                  class="form-control form-control-lg"
+                  placeholder="Введите ваш пароль"
+                  name="email"
+                  id="email"
+                  required="" />
+            </div>
+            <div class="form-group">
+               <div class="row">
+                  <div class="col-md-6">
+                     <a href="/employer/recovery" class="nav-link auth-links">Забыли пароль?</a>
+                  </div>
+                  <div class="col-md-6">
+                     <a href="/employer/register" class="nav-link auth-links text-right">Ещё нет аккаунта?</a>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <button type="submit" class="btn btn-blue btn-lg btn-block">Войти как работодатель</button>
+            </div>
+         </div>
+      </form>
+   </div>
+
+   <div class="col-md-7">
+        <div class="auth-right-block">
+            <div class="auth-illustration">
+                <img src="/images/jobseeker-illustration.svg" width="100%" />
+            </div>
+            <div class="auth-illustration-desc">
+                Вы являетесь соискателем?
+                <div class="form-group">
+                    <a href="/jobseeker/login" class="btn btn-lg btn-blue">Войти как соискатель</a>
+                </div>
+            </div>
+        </div>
+   </div>
+
+</div>

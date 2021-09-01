@@ -21,14 +21,23 @@ module.exports = {
                 searchQueryString: request.query?.searchQueryString ? request.query?.searchQueryString : false,
                 searchCity: request.query?.searchCity ? request.query?.searchCity : false,
                 rubric: request.query?.rubric ? request.query?.rubric : false,
-                scheduleId: request.query?.scheduleId ? request.query?.scheduleId : false
+                scheduleId: request.query?.scheduleId ? request.query?.scheduleId : false,
+                salaryFrom: request.query?.salaryFrom ? request.query?.salaryFrom : false
             });
 
             let content = ``
-            for(const key in data) {
-                const {_source: vacancy} = data[key];
-                content = content + VacancyHorizontalBlock(vacancy);
+            if(data.length > 0){
+                for(const key in data) {
+                    const {_source: vacancy} = data[key];
+                    content = content + VacancyHorizontalBlock(vacancy);
+                }
+            } else {
+                content = `<div class="vacancies-empty">
+                                <img src="/images/empty.png" width="50%" />
+                                <h5 class="vacancies-empty title">Список вакансий пуст.. Попробуйте изменить фильтр!</h5>
+                            </div>`
             }
+
 
             response.render('app/index', {
                 title: "Поиск вакансий",
@@ -51,7 +60,8 @@ module.exports = {
     vacancy: async function (request, response) {
 
         try {
-            let {data} = await sendRequest("/vacancy/" + request.params.vacancyID);
+            let {data, recommendedVacancies} = await sendRequest("/vacancy/" + request.params.vacancyID);
+
             const {_source: vacancy} = data[0];
 
             moment.locale('ru');
@@ -61,7 +71,8 @@ module.exports = {
 
             response.render('app/vacancy', {
                 title: vacancy.name,
-                vacancy: vacancy
+                vacancy: vacancy,
+                recommendedVacancies: recommendedVacancies
             });
         } catch (error) {
             throw Error(error);

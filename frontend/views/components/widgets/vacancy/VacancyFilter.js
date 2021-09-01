@@ -2,9 +2,10 @@ module.exports.VacancyFilter = function (rubrics) {
     return ` <div class="block-filter content">
                 <div class="form-group filter-type">
                     <label for="rubrics_list" class="filter-title">Рубрики</label>
-                    <select class="form-select form-select-lg input-rubrics" id="rubrics_list" onchange="searchVacanciesByRubric()">
+                    <input type="search" list="rubricsList" class="form-select form-select-lg input-rubrics" id="rubrics_list" onchange="searchVacanciesByRubric()" placeholder="Выберите рубрику">
+                    <datalist id="rubricsList">
                         ${generationRubricsList(rubrics)}
-                    </select>
+                    </datalist>
                 </div>
     
                 <form name="shedules_list" class="form-group filter-type">
@@ -47,16 +48,14 @@ module.exports.VacancyFilter = function (rubrics) {
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-blue btn-lg">OK</button>
+                                <button type="submit" class="btn btn-blue btn-lg" onclick="changeVacanciesSalary()">OK</button>
                             </div>
                         </div>
                     </div>
-    
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="" id="filter_noSalary">
-                        <label class="form-check-label" for="filter_noSalary">
-                            Показывать вакансии без з.п.
-                        </label>
+  
+  
+                    <div class="banners">
+                        ${ generationBanners() }
                     </div>
     
                 </div>
@@ -69,9 +68,21 @@ module.exports.VacancyFilter = function (rubrics) {
  * @returns {string}
  */
 function generationRubricsList(rubrics) {
-    content = `<option value="" selected>Выберите рубрику</option>`;
+    content = ``;
     for(const {_source: rubric} of rubrics) {
         content += `<option value="${rubric.ru}" onclick="searchRubric()">${rubric.ru}</option>`;
     }
     return content;
+}
+
+function generationBanners(banners = []) {
+    if(banners.length === 0){
+        return `<div class="banner-empty">
+                <div class="banner-title">
+                    300x400
+                    <span class="banner-subtitle">Здесь может быть ваш баннер!</span>
+                </div>
+            </div>`
+    }
+    return false;
 }

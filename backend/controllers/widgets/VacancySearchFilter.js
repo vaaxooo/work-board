@@ -7,9 +7,9 @@ module.exports = {
             searchQueryString,
             searchCity,
             rubric,
-            scheduleId
+            scheduleId,
+            salaryFrom,
         } = params;
-
 
         if (rubric && rubric !== "false") {
             filter.push({
@@ -42,6 +42,17 @@ module.exports = {
                     scheduleId: scheduleId
                 }
             });
+        }
+
+        if(salaryFrom && salaryFrom !== "false") {
+            filter.push({
+                range: {
+                    salaryFrom: {
+                        gte: salaryFrom,
+                    },
+                }
+            });
+
         }
 
         return filter;

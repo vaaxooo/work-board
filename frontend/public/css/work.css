@@ -328,3 +328,67 @@ a.company-website {
 strong {
     font-size: 18px;
 }
+
+
+.vacancies-empty {
+    text-align: center;
+    margin-top: 10%;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.recommended-vacancies-block {
+    background: #fff;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.recommended-vacancies-block > .title {
+    font-size: 24px;
+    padding: 15px;
+}
+
+a.list-group-item.list-group-item-action.recommended-vacancy {
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+}
+
+.vacancy-recommended-title {
+    font-size: 20px;
+}
+
+/* BEGIN BANNER STYLES */
+.banners {
+    margin-top: 15%;
+}
+
+.banner-empty {
+    background: #e9ecef;
+    border: 1px dotted #ffffff;
+    height: 400px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.banner-title {
+    font-size: 30px;
+    font-weight: 600;
+    color: #6c757d;
+    text-align: center;
+    position: relative;
+    top: 35%;
+}
+
+.banner-subtitle {
+    display: block;
+    font-size: 18px;
+}
+
+input::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+.form-select {
+    cursor: pointer;
+}

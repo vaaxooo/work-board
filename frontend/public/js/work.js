@@ -62,6 +62,23 @@ function searchVacanciesByRubric() {
 }
 
 /**
+ * Change vacancies Salary
+ */
+function changeVacanciesSalary() {
+    const salaryFrom = document.getElementById("salaryFrom").value;
+
+    let queryParams = getUrlParams();
+    if (getUrlParams().hasOwnProperty('salaryFrom')) {
+        delete queryParams.salaryFrom;
+    }
+
+    if(salaryFrom){
+        queryParams = Object.assign({}, queryParams,{salaryFrom});
+    }
+    window.location.href = '/vacancies/search/1' + "?" + encodeQueryData(queryParams);
+}
+
+/**
  * Pagination redirect generate
  * @param url
  */
@@ -87,6 +104,12 @@ const rubrics = document.getElementById('rubrics_list');
 if (rubrics) {
     rubrics.value = getUrlParams()?.rubric ? getUrlParams()?.rubric : "";
 }
+
+const salaryFrom = document.getElementById('salaryFrom');
+if (salaryFrom) {
+    salaryFrom.value = getUrlParams()?.salaryFrom ? getUrlParams()?.salaryFrom : "";
+}
+
 
 const schedulesID = document.querySelectorAll("[name='scheduleId']");
 if (schedulesID && schedulesID.length > 0) {

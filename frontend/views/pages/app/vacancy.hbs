@@ -43,7 +43,7 @@
 
     <div class="col-md-4">
         {{#if vacancy.contactPhone }}
-            <div class="vacancyinfo-company-block">
+            <div class="vacancyinfo-company-block mb-4">
                 <div class="company-image">
                     <img src="https://vacancy-contact-photos-original.rabota.ua/{{vacancy.logo}}" class="company-image-preview rounded-circle" />
                 </div>
@@ -74,6 +74,39 @@
                 </div>
             </div>
         {{/if}}
+
+        {{#if recommendedVacancies }}
+            <div class="recommended-vacancies-block">
+                <div class="title">
+                    Похожие вакансии
+                </div>
+
+                <div class="vacancies list-group">
+                    {{#each recommendedVacancies }}
+                        <a href="/vacancy/{{ this._source.id }}" class="list-group-item list-group-item-action recommended-vacancy">
+                            <div class="vacancies-block">
+                                <div class="vacancy-recommended-title">
+                                    {{ this._source.name }}
+                                    {{#if this._source.hot }}
+                                        <span class="material-icons hot-icon text-danger" title="Гарячая вакансия">local_fire_department</span>
+                                    {{/if}}
+                                </div>
+                                <span class="row">
+                                    <div class="col-md-6">
+                                        <span class="material-icons icon">location_city</span> {{ this._source.companyName }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="material-icons icon">fmd_good</span> {{ this._source.cityName }}
+                                    </div>
+                                </span>
+                            </div>
+                        </a>
+                    {{/each}}
+                </div>
+
+            </div>
+        {{/if}}
+
     </div>
 
 </div>
